@@ -1,0 +1,84 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background: #007BFF;
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background: #0056b3;
+    border-radius: 5px;
+}
+
+/* Container Styling */
+.container {
+    background: white;
+    padding: 40px;
+    width: 70%;
+    margin: 50px auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Team Section */
+.team {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+/* Individual Team Member */
+.member {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    width: 220px;
+}
+
+.member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Member Image */
+.member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #007BFF;
+}
+
+/* Member Name */
+.member h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* University Name */
+.member p {
+    font-size: 16px;
+    color: #666;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Assistant</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Additional chat styling for spacing */
+      .chatbox {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        max-height: 300px;
+      }
+      .user-message,
+      .bot-message {
+        margin: 10px 0; /* Adds space between messages */
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .user-message {
+        background: #007bff;
+        color: white;
+        text-align: left;
+      }
+      .bot-message {
+        background: #f1f1f1;
+        color: black;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+      <h1>Financial Assistant</h1>
+      <p>Get real-time financial advice using AI</p>
+
+      <!-- Chat Display Box -->
+      <div id="chatbox" class="chatbox">
+        <p class="bot-message">
+          <strong>AI:</strong> How can I assist you today?
+        </p>
+      </div>
+
+      <!-- User Input Section -->
+      <div class="chat-container">
+        <input
+          type="text"
+          id="user_input"
+          placeholder="Type your question..."
+        />
+        <button onclick="sendMessage()">Ask</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Financial Assistant. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      document
+        .getElementById("user_input")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault(); // Prevents line break in input field
+            sendMessage();
+          }
+        });
+
+      async function sendMessage() {
+        let userMessage = document.getElementById("user_input").value;
+
+        if (userMessage.trim() === "") {
+          alert("Please enter a question!");
+          return;
+        }
+
+        // Display user message instantly
+        let chatBox = document.getElementById("chatbox");
+        let userDiv = document.createElement("div");
+        userDiv.className = "user-message";
+        userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
+        chatBox.appendChild(userDiv);
+        document.getElementById("user_input").value = "";
+
+        // Show "Typing..." while waiting for response
+        let botDiv = document.createElement("div");
+        botDiv.className = "bot-message";
+        botDiv.innerHTML = `<em>AI is thinking...</em>`;
+        chatBox.appendChild(botDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+
+        // Send request to Flask API
+        try {
+          let response = await fetch("/get_response", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userMessage }),
+          });
+
+          let data = await response.json();
+          botDiv.innerHTML = `<strong>AI:</strong> ${
+            data.response || "Error: Unable to fetch response."
+          }`;
+        } catch (error) {
+          botDiv.innerHTML = `<strong>AI:</strong> Error connecting to server.`;
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+      }
+    </script>
+  </body>
+</html>

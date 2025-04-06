@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='about.css') }}"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact Us</a>
+    </div>
+
+    <div class="container">
+      <h2>Meet Our Team</h2>
+      <div class="team">
+        <div class="member">
+          <img
+            src="static/team/sampriti.jpg"
+            alt="Sampriti Ghosh"
+          />
+          <h3>Sampriti Ghosh</h3>
+          <p>JIS University</p>
+        </div>
+        <div class="member">
+          <img
+            src="static/team/neha.jpg"
+            alt="Neha Kumari"
+          />
+          <h3>Neha Kumari</h3>
+          <p>JIS University</p>
+        </div>
+        <div class="member">
+          <img
+            src="static/team/arnab.jpg"
+            alt="Arnab Majee"
+          />
+          <h3>Arnab Majee</h3>
+          <p>JIS University</p>
+        </div>
+        <div class="member">
+          <img
+            src="static/team/aditya.jpg"
+            alt="Aditya Dutta"
+          />
+          <h3>Aditya Dutta</h3>
+          <p>JIS University</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
